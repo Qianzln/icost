@@ -81,10 +81,7 @@ export default function Settlement() {
 
   // Total balance: positive diff means the other person overpaid, so current user owes them
   // negative diff means the other person underpaid, so they owe current user
-  const _totalOtherDiff = useMemo(
-    () => memberBalances.reduce((sum, mb) => sum + mb.diff, 0),
-    [memberBalances],
-  )
+  // totalOtherDiff removed
 
   // For couple mode, simplify: one "other" person
   const otherBalance = memberBalances[0]

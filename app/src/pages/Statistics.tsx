@@ -431,7 +431,7 @@ export default function Statistics() {
             {/* Category List */}
             <div className="space-y-2">
               {categoryBreakdown.map((item, idx) => {
-                const _total = statsType === 'expense' ? totalExpense : totalIncome
+                // total removed
                 const maxAmount = categoryBreakdown[0]?.amount ?? 1
                 const barWidth = (item.amount / maxAmount) * 100
                 return (

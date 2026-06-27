@@ -55,17 +55,9 @@ const TAB_CONFIG = [
 
 type ScopeOption = { key: TransactionScope | 'self' | 'partner' | 'both' | 'family'; label: string }
 
-const _SCOPE_OPTIONS: ScopeOption[] = [
-  { key: 'self', label: '我' },
-  { key: 'partner', label: '对方' },
-  { key: 'both', label: '两人' },
-  { key: 'family', label: '家庭' },
-]
+// SCOPE_OPTIONS removed
 
-const _EXPENSE_ATTR_OPTIONS = [
-  { key: 'personal' as const, label: '个人支出' },
-  { key: 'shared' as const, label: '共同支出' },
-]
+// EXPENSE_ATTR_OPTIONS removed
 
 const _SPLIT_OPTIONS: { key: SplitMethod; label: string }[] = [
   { key: 'equal', label: '平均分' },
@@ -156,7 +148,7 @@ export default function AddTransaction() {
   const isExpense = activeTab === 'expense'
   const isIncome = activeTab === 'income'
   const accentColor = isExpense ? 'var(--color-expense)' : isIncome ? 'var(--color-income)' : 'var(--color-primary)'
-  const _accentBg = isExpense ? 'bg-expense' : isIncome ? 'bg-income' : 'bg-primary'
+  // accentBg removed
 
   const currentAccount = useMemo(
     () => accounts.find((a) => a.id === selectedAccountId),
@@ -588,14 +580,7 @@ function QuickAction({ icon, label, onClick }: { icon: React.ReactNode; label: s
   )
 }
 
-function _AdvancedSection({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <div className="text-xs text-text-muted mb-2">{title}</div>
-      {children}
-    </div>
-  )
-}
+// AdvancedSection removed
 
 function NumKey({
   label,
