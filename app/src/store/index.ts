@@ -3,7 +3,7 @@ import type {
   Profile, Ledger, LedgerMember, Category, Account,
   Transaction, Settlement, Tag
 } from '../types'
-import { isSupabaseConfigured, supabase } from '../lib/supabase'
+import { isSupabaseConfigured } from '../lib/supabase'
 import * as api from '../lib/api'
 
 // ============ Helpers ============
@@ -294,11 +294,11 @@ export const useStore = create<AppState>((set, get) => ({
   },
 
   loginRemote: async (email, password) => {
-    const { data } = await api.signIn(email, password)
-    if (data.user) {
-      const profile = await api.getProfile(data.user.id)
+    const result = await api.signIn(email, password)
+    if (result.user) {
+      const profile = await api.getProfile(result.user.id)
       const user: Profile = profile || {
-        id: data.user!.id,
+        id: result.user!.id,
         nickname: email.split('@')[0],
         created_at: new Date().toISOString(),
       }
@@ -566,7 +566,7 @@ export const useStore = create<AppState>((set, get) => ({
     if (!isSupabaseConfigured || !get().currentLedger) return
     get().stopRealtime()
     const ledgerId = get().currentLedger!.id
-    realtimeCleanup = api.subscribeToLedger(ledgerId, async (event) => {
+    realtimeCleanup = api.subscribeToLedger(ledgerId, async (_event) => {
       // Reload data on any change
       await get().loadLedgerData(ledgerId)
     })

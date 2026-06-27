@@ -9,7 +9,7 @@ import {
 import { zhCN } from 'date-fns/locale'
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import { useStore } from '../store'
-import type { Transaction, Category, LedgerMember } from '../types'
+import type { Category, LedgerMember } from '../types'
 
 type PeriodType = 'week' | 'month' | 'year' | 'all' | 'range'
 
@@ -33,8 +33,8 @@ export default function Statistics() {
 
   const [period, setPeriod] = useState<PeriodType>('month')
   const [selectedDate, setSelectedDate] = useState(new Date())
-  const [rangeStart, setRangeStart] = useState<Date | null>(null)
-  const [rangeEnd, setRangeEnd] = useState<Date | null>(null)
+  const [rangeStart, _setRangeStart] = useState<Date | null>(null)
+  const [rangeEnd, _setRangeEnd] = useState<Date | null>(null)
   const [statsType, setStatsType] = useState<'expense' | 'income'>('expense')
   const [foldedSections, setFoldedSections] = useState<Record<string, boolean>>({
     income_expense: false,
@@ -431,7 +431,7 @@ export default function Statistics() {
             {/* Category List */}
             <div className="space-y-2">
               {categoryBreakdown.map((item, idx) => {
-                const total = statsType === 'expense' ? totalExpense : totalIncome
+                const _total = statsType === 'expense' ? totalExpense : totalIncome
                 const maxAmount = categoryBreakdown[0]?.amount ?? 1
                 const barWidth = (item.amount / maxAmount) * 100
                 return (

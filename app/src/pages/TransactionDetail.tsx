@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { ChevronLeft, Edit3, Trash2, Calendar, Tag, User, CreditCard, Users, FileText } from 'lucide-react'
 import { format } from 'date-fns'
 import { useStore } from '../store'
-import type { Transaction, Category } from '../types'
+import type { Category } from '../types'
 
 export default function TransactionDetail() {
   const { id } = useParams<{ id: string }>()

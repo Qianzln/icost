@@ -1,7 +1,7 @@
 import { supabase } from './supabase'
 import type {
   Profile, Ledger, LedgerMember, Category, Account,
-  Transaction, Settlement, Tag, SplitMethod,
+  Transaction, Settlement, Tag,
 } from '../types'
 
 // ─── Auth ─────────────────────────────────────

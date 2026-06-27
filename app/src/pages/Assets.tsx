@@ -1,4 +1,4 @@
-import { Wallet, CreditCard, TrendingUp, TrendingDown, ChevronLeft, ArrowDownLeft, ArrowUpRight } from 'lucide-react'
+import { Wallet, CreditCard, ChevronLeft, ArrowDownLeft, ArrowUpRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 

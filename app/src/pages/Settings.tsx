@@ -1,11 +1,11 @@
-import { useState, useRef, useMemo } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  Lock, Download, Upload, Clock,
+  Download, Upload, Clock,
   Grid3X3, Tag, FileText, BarChart3, BookOpen, Database,
-  LogOut, ChevronRight, ChevronLeft, X, Plus, Trash2,
-  Copy, Check, Users, Shield, Pencil, Gift, Camera, Eye, CreditCard,
-  ArrowRightLeft, DollarSign, ClipboardList, RotateCcw, PiggyBank, ToggleLeft,
+  LogOut, ChevronRight, ChevronLeft, Plus, Trash2,
+  Copy, Check, Users, Shield, Pencil, Camera, Eye, CreditCard,
+  ArrowRightLeft, DollarSign, ClipboardList, RotateCcw, PiggyBank,
 } from 'lucide-react'
 import { useStore } from '../store'
 import type { Category, Tag as TagType } from '../types'
@@ -47,7 +47,7 @@ export default function Settings() {
     tags, addTag, deleteTag,
     accounts,
     monthlyBudget, setMonthlyBudget,
-    clearTransactions, deleteTransactionsByFilter, resetLedger,
+
     transactions,
   } = store
 
@@ -116,9 +116,10 @@ export default function Settings() {
 
   const handleJoinLedger = () => {
     if (!joinCode.trim()) return
-    const ok = joinLedgerByCode(joinCode.trim())
-    setJoinMsg(ok ? '加入成功！' : '邀请码无效，请检查后重试')
-    if (ok) setTimeout(() => { setJoinMsg(''); setActivePanel(null) }, 1200)
+    joinLedgerByCode(joinCode.trim()).then(ok => {
+      setJoinMsg(ok ? '加入成功！' : '邀请码无效，请检查后重试')
+      if (ok) setTimeout(() => { setJoinMsg(''); setActivePanel(null) }, 1200)
+    })
   }
 
   const copyInviteCode = () => {

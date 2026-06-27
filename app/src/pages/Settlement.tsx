@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Check, Clock, ChevronLeft } from 'lucide-react'
 import { format } from 'date-fns'
 import { useStore } from '../store'
-import type { Transaction, Settlement as SettlementType } from '../types'
+import type { Transaction } from '../types'
 
 interface MemberBalance {
   userId: string
@@ -81,7 +81,7 @@ export default function Settlement() {
 
   // Total balance: positive diff means the other person overpaid, so current user owes them
   // negative diff means the other person underpaid, so they owe current user
-  const totalOtherDiff = useMemo(
+  const _totalOtherDiff = useMemo(
     () => memberBalances.reduce((sum, mb) => sum + mb.diff, 0),
     [memberBalances],
   )
@@ -100,7 +100,7 @@ export default function Settlement() {
         if (!currentItem) return
 
         otherMembers.forEach(other => {
-          const otherItem = split.items.find(i => i.user_id === other.userId)
+          const otherItem = split.items.find(i => i.user_id === other.user_id)
           if (!otherItem) return
 
           const otherOwes = otherItem.should_pay - otherItem.actual_paid

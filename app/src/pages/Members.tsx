@@ -207,8 +207,7 @@ export default function Members() {
                   {/* Action Menu Dropdown */}
                   {activeMenu === member.id && (
                     <div
-                      className="absolute right-4 top-14 z-20 bg-white rounded-2xl shadow-lg py-1 min-w-32"
-                      className="border border-divider"
+                      className="absolute right-4 top-14 z-20 bg-white rounded-2xl shadow-lg py-1 min-w-32 border border-divider"
                     >
                       {/* Role options */}
                       {currentUserMember?.role === 'owner' && (

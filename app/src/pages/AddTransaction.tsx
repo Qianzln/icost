@@ -55,19 +55,19 @@ const TAB_CONFIG = [
 
 type ScopeOption = { key: TransactionScope | 'self' | 'partner' | 'both' | 'family'; label: string }
 
-const SCOPE_OPTIONS: ScopeOption[] = [
+const _SCOPE_OPTIONS: ScopeOption[] = [
   { key: 'self', label: '我' },
   { key: 'partner', label: '对方' },
   { key: 'both', label: '两人' },
   { key: 'family', label: '家庭' },
 ]
 
-const EXPENSE_ATTR_OPTIONS = [
+const _EXPENSE_ATTR_OPTIONS = [
   { key: 'personal' as const, label: '个人支出' },
   { key: 'shared' as const, label: '共同支出' },
 ]
 
-const SPLIT_OPTIONS: { key: SplitMethod; label: string }[] = [
+const _SPLIT_OPTIONS: { key: SplitMethod; label: string }[] = [
   { key: 'equal', label: '平均分' },
   { key: 'single', label: '一人承担' },
   { key: 'ratio', label: '按比例' },
@@ -136,11 +136,11 @@ export default function AddTransaction() {
   const [triggerRect, setTriggerRect] = useState<{top: number; left: number} | null>(null)
 
   // Advanced fields
-  const [showAdvanced, setShowAdvanced] = useState(false)
-  const [payerUserId, setPayerUserId] = useState(currentUser?.id || '')
-  const [consumeTarget, setConsumeTarget] = useState<ScopeOption['key']>('self')
-  const [expenseAttr, setExpenseAttr] = useState<'personal' | 'shared'>('shared')
-  const [splitMethod, setSplitMethod] = useState<SplitMethod>(
+  const [_showAdvanced, _setShowAdvanced] = useState(false)
+  const [payerUserId, _setPayerUserId] = useState(currentUser?.id || '')
+  const [_consumeTarget, _setConsumeTarget] = useState<ScopeOption['key']>('self')
+  const [expenseAttr, _setExpenseAttr] = useState<'personal' | 'shared'>('shared')
+  const [_splitMethod, _setSplitMethod] = useState<SplitMethod>(
     currentLedger?.default_split_method || 'equal'
   )
 
@@ -156,7 +156,7 @@ export default function AddTransaction() {
   const isExpense = activeTab === 'expense'
   const isIncome = activeTab === 'income'
   const accentColor = isExpense ? 'var(--color-expense)' : isIncome ? 'var(--color-income)' : 'var(--color-primary)'
-  const accentBg = isExpense ? 'bg-expense' : isIncome ? 'bg-income' : 'bg-primary'
+  const _accentBg = isExpense ? 'bg-expense' : isIncome ? 'bg-income' : 'bg-primary'
 
   const currentAccount = useMemo(
     () => accounts.find((a) => a.id === selectedAccountId),
@@ -356,7 +356,6 @@ export default function AddTransaction() {
                     `}
                     style={{
                       backgroundColor: isSelected ? cat.color + '20' : cat.color + '15',
-                      ringColor: cat.color,
                       ...(isSelected ? { boxShadow: `0 0 0 2px ${cat.color}, 0 0 0 4px ${cat.color}30` } : {}),
                     }}
                   >
@@ -589,7 +588,7 @@ function QuickAction({ icon, label, onClick }: { icon: React.ReactNode; label: s
   )
 }
 
-function AdvancedSection({ title, children }: { title: string; children: React.ReactNode }) {
+function _AdvancedSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
       <div className="text-xs text-text-muted mb-2">{title}</div>
