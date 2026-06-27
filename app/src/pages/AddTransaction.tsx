@@ -59,12 +59,7 @@ type ScopeOption = { key: TransactionScope | 'self' | 'partner' | 'both' | 'fami
 
 // EXPENSE_ATTR_OPTIONS removed
 
-const _SPLIT_OPTIONS: { key: SplitMethod; label: string }[] = [
-  { key: 'equal', label: '平均分' },
-  { key: 'single', label: '一人承担' },
-  { key: 'ratio', label: '按比例' },
-  { key: 'custom', label: '指定金额' },
-]
+// SPLIT_OPTIONS removed
 
 // ── Component ────────────────────────────────────────────────────────
 
